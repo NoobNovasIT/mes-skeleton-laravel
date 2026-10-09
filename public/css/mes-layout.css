@@ -1,0 +1,499 @@
+/* ==========================================================================
+   MES - App shell: sidebar, topbar, main.
+   Cấu trúc HTML tương ứng: Views/Shared/_Layout.cshtml
+   ========================================================================== */
+
+.mes-shell {
+    display: flex;
+    min-height: 100vh;
+    background: var(--mes-bg);
+}
+
+.mes-content {
+    flex: 1 1 auto;
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+}
+
+/* ==========================================================================
+   Sidebar
+   ========================================================================== */
+.mes-sidebar {
+    flex: 0 0 var(--mes-sidebar-width);
+    width: var(--mes-sidebar-width);
+    height: 100vh;
+    position: sticky;
+    top: 0;
+    z-index: 1030;
+    display: flex;
+    flex-direction: column;
+    background: var(--mes-surface);
+    border-right: 1px solid var(--mes-border);
+    /* Không transition width: tránh reflow cả trang (grid, chart) mỗi frame. */
+}
+
+.mes-brand {
+    height: var(--mes-topbar-height);
+    flex: 0 0 var(--mes-topbar-height);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 0 12px;
+    border-bottom: 1px solid var(--mes-border);
+}
+
+.mes-brand-link {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    min-width: 0;
+    color: var(--mes-text);
+}
+
+.mes-brand-logo {
+    height: 28px;
+    max-width: 120px;
+    object-fit: contain;
+}
+
+.mes-brand-text {
+    font-size: 15px;
+    font-weight: 600;
+    letter-spacing: .3px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+    .mes-brand-text em {
+        font-style: normal;
+        color: var(--mes-brand);
+    }
+
+.mes-icon-button {
+    width: 28px;
+    height: 28px;
+    flex: 0 0 auto;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+    border: none;
+    border-radius: var(--mes-radius-sm);
+    background: transparent;
+    color: var(--mes-text-3);
+    font-size: 13px;
+    cursor: pointer;
+}
+
+    .mes-icon-button:hover {
+        background: var(--mes-surface-3);
+        color: var(--mes-text-2);
+    }
+
+.mes-collapse-button {
+    margin-left: auto;
+}
+
+.mes-sidebar-scroll {
+    flex: 1 1 auto;
+    overflow-y: auto;
+    overflow-x: hidden;
+    padding: 10px 8px;
+}
+
+    .mes-sidebar-scroll::-webkit-scrollbar {
+        width: 6px;
+    }
+
+    .mes-sidebar-scroll::-webkit-scrollbar-thumb {
+        background: #d8e0ea;
+        border-radius: 3px;
+    }
+
+.mes-menu-group-label {
+    font-size: 11px;
+    color: var(--mes-text-3);
+    letter-spacing: .6px;
+    text-transform: uppercase;
+    padding: 4px 10px 8px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.mes-menu-empty {
+    font-size: 12px;
+    color: var(--mes-text-3);
+    padding: 8px 10px;
+}
+
+/* Menu item (Group toggle hoặc Page link) */
+.mes-nav-link {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    gap: 9px;
+    padding: 8px 10px;
+    margin-bottom: 1px;
+    border: none;
+    border-radius: var(--mes-radius-sm);
+    background: transparent;
+    color: var(--mes-text-2);
+    font-size: 13px;
+    text-align: left;
+    white-space: nowrap;
+    cursor: pointer;
+    transition: background-color .12s ease, color .12s ease;
+}
+
+    .mes-nav-link:hover {
+        background: var(--mes-surface-2);
+        color: var(--mes-text);
+    }
+
+.mes-nav-icon {
+    flex: 0 0 18px;
+    width: 18px;
+    text-align: center;
+    font-size: 14px;
+    color: var(--mes-text-3);
+}
+
+.mes-nav-text {
+    flex: 1 1 auto;
+    min-width: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.mes-nav-caret {
+    flex: 0 0 auto;
+    font-size: 10px;
+    color: #b9c3d1;
+    transition: transform .16s ease;
+}
+
+.mes-nav-group.mes-open > .mes-nav-link {
+    background: var(--mes-brand-50);
+    color: var(--mes-brand-600);
+    font-weight: 500;
+}
+
+    .mes-nav-group.mes-open > .mes-nav-link .mes-nav-icon,
+    .mes-nav-group.mes-open > .mes-nav-link .mes-nav-caret {
+        color: var(--mes-brand-600);
+    }
+
+    .mes-nav-group.mes-open > .mes-nav-link .mes-nav-caret {
+        transform: rotate(180deg);
+    }
+
+.mes-submenu {
+    display: none;
+    margin: 2px 0 6px 18px;
+    padding-left: 9px;
+    border-left: 1px solid var(--mes-border);
+}
+
+.mes-nav-group.mes-open > .mes-submenu {
+    display: block;
+}
+
+.mes-submenu .mes-nav-link {
+    padding: 6px 10px;
+    font-size: 12.75px;
+    color: #6b7684;
+}
+
+.mes-submenu .mes-nav-icon {
+    flex-basis: 15px;
+    width: 15px;
+    font-size: 12px;
+    color: #b0bccb;
+}
+
+a.mes-nav-link.mes-active {
+    background: var(--mes-brand-50);
+    color: var(--mes-brand-600);
+    font-weight: 500;
+}
+
+    a.mes-nav-link.mes-active .mes-nav-icon {
+        color: var(--mes-brand-600);
+    }
+
+/* User box */
+.mes-user {
+    flex: 0 0 auto;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 9px 10px;
+    border-top: 1px solid var(--mes-border);
+}
+
+.mes-avatar {
+    flex: 0 0 auto;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--mes-brand-100);
+    color: var(--mes-brand-600);
+    font-size: 11px;
+    font-weight: 600;
+    text-transform: uppercase;
+}
+
+.mes-user-meta {
+    flex: 1 1 auto;
+    min-width: 0;
+    line-height: 1.25;
+    color: inherit;
+}
+
+.mes-user-name {
+    display: block;
+    font-size: 12.5px;
+    color: var(--mes-text);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.mes-user-role {
+    display: block;
+    font-size: 11px;
+    color: var(--mes-text-3);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.mes-logout-button:hover {
+    background: var(--mes-danger-bg);
+    color: var(--mes-danger);
+}
+
+/* --- Collapsed sidebar (desktop) ----------------------------------------- */
+.mes-shell.mes-collapsed .mes-sidebar {
+    flex-basis: var(--mes-sidebar-width-collapsed);
+    width: var(--mes-sidebar-width-collapsed);
+}
+
+.mes-shell.mes-collapsed .mes-brand-link,
+.mes-shell.mes-collapsed .mes-menu-group-label,
+.mes-shell.mes-collapsed .mes-nav-text,
+.mes-shell.mes-collapsed .mes-nav-caret,
+.mes-shell.mes-collapsed .mes-user-meta,
+.mes-shell.mes-collapsed .mes-submenu,
+.mes-shell.mes-collapsed .mes-logout-button {
+    display: none !important;
+}
+
+.mes-shell.mes-collapsed .mes-brand {
+    justify-content: center;
+    padding: 0 6px;
+}
+
+.mes-shell.mes-collapsed .mes-collapse-button {
+    margin-left: 0;
+    transform: rotate(180deg);
+}
+
+.mes-shell.mes-collapsed .mes-nav-link {
+    justify-content: center;
+    padding: 9px 0;
+}
+
+.mes-shell.mes-collapsed .mes-user {
+    justify-content: center;
+}
+
+/* ==========================================================================
+   Topbar
+   ========================================================================== */
+.mes-topbar {
+    height: var(--mes-topbar-height);
+    flex: 0 0 var(--mes-topbar-height);
+    position: sticky;
+    top: 0;
+    z-index: 1020;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 0 14px;
+    background: var(--mes-surface);
+    border-bottom: 1px solid var(--mes-border);
+}
+
+.mes-drawer-button {
+    font-size: 16px;
+}
+
+.mes-module-tabs {
+    flex: 1 1 auto;
+    min-width: 0;
+    display: flex;
+    align-items: center;
+    gap: 2px;
+    overflow-x: auto;
+    scrollbar-width: none;
+}
+
+    .mes-module-tabs::-webkit-scrollbar {
+        display: none;
+    }
+
+.mes-module-tab {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    padding: 6px 12px;
+    border-radius: var(--mes-radius-sm);
+    color: var(--mes-text-2);
+    font-size: 13px;
+    white-space: nowrap;
+    transition: background-color .12s ease, color .12s ease;
+}
+
+    .mes-module-tab:hover {
+        background: var(--mes-surface-2);
+        color: var(--mes-text);
+    }
+
+    .mes-module-tab.mes-active {
+        background: var(--mes-brand);
+        color: var(--mes-text-on-brand);
+        font-weight: 500;
+    }
+
+        .mes-module-tab.mes-active:hover {
+            background: var(--mes-brand-hover);
+        }
+
+.mes-module-tab-icon {
+    font-size: 12px;
+    opacity: .8;
+}
+
+.mes-topbar-right {
+    margin-left: auto;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex: 0 0 auto;
+}
+
+    .mes-topbar-right form {
+        margin: 0;
+    }
+
+/* Bộ chọn ngôn ngữ (Views/Shared/_LanguageSwitcher.cshtml) nằm trong mes-components.css
+   vì trang đăng nhập cũng dùng nhưng không load file này. */
+
+/* ==========================================================================
+   Main
+   ========================================================================== */
+.mes-main {
+    flex: 1 1 auto;
+    min-width: 0;
+    padding: 16px 18px 28px;
+}
+
+.mes-page-head {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: 4px 0;
+    margin-bottom: 14px;
+}
+
+.mes-breadcrumb-item {
+    font-size: 12px;
+    color: var(--mes-text-3);
+    white-space: nowrap;
+}
+
+.mes-breadcrumb-separator {
+    margin: 0 6px;
+    font-size: 12px;
+    color: #cbd3df;
+}
+
+.mes-page-title {
+    margin: 0;
+    font-size: 20px;
+    font-weight: 500;
+    line-height: 1.3;
+    color: var(--mes-text);
+}
+
+/* ==========================================================================
+   Responsive: sidebar thành drawer dưới 768px
+   ========================================================================== */
+.mes-backdrop {
+    display: none;
+    position: fixed;
+    inset: 0;
+    z-index: 1029;
+    background: rgba(22, 35, 58, .35);
+}
+
+@media (max-width: 767.98px) {
+    .mes-sidebar {
+        position: fixed;
+        left: 0;
+        transform: translateX(-100%);
+        transition: transform .18s ease;
+        box-shadow: var(--mes-shadow-pop);
+    }
+
+    .mes-shell.mes-drawer-open .mes-sidebar {
+        transform: translateX(0);
+    }
+
+    .mes-shell.mes-drawer-open .mes-backdrop {
+        display: block;
+    }
+
+    .mes-shell.mes-collapsed .mes-sidebar {
+        flex-basis: var(--mes-sidebar-width);
+        width: var(--mes-sidebar-width);
+    }
+
+    .mes-shell.mes-collapsed .mes-brand-link,
+    .mes-shell.mes-collapsed .mes-menu-group-label,
+    .mes-shell.mes-collapsed .mes-nav-text,
+    .mes-shell.mes-collapsed .mes-nav-caret,
+    .mes-shell.mes-collapsed .mes-user-meta,
+    .mes-shell.mes-collapsed .mes-logout-button {
+        display: revert !important;
+    }
+
+    .mes-shell.mes-collapsed .mes-nav-group.mes-open > .mes-submenu {
+        display: block !important;
+    }
+
+    .mes-collapse-button {
+        display: none;
+    }
+
+    .mes-main {
+        padding: 12px 12px 24px;
+    }
+
+    .mes-topbar {
+        padding: 0 8px;
+    }
+}
+
+@media (min-width: 768px) {
+    .mes-drawer-button {
+        display: none;
+    }
+}

@@ -1,0 +1,994 @@
+/* ==========================================================================
+   MES - Thành phần dùng lại trong các page: card, toolbar, badge, stat tile,
+   cây quyền / cây menu, trang đăng nhập.
+   ========================================================================== */
+
+/* --- Card ----------------------------------------------------------------- */
+.mes-card {
+    background: var(--mes-surface);
+    border: 1px solid var(--mes-border);
+    border-radius: var(--mes-radius-lg);
+    margin-bottom: 16px;
+}
+
+.mes-card-header {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 8px;
+    padding: 11px 14px;
+    border-bottom: 1px solid var(--mes-border);
+}
+
+.mes-card-title {
+    margin: 0;
+    font-size: 14px;
+    font-weight: 500;
+}
+
+.mes-card-actions {
+    margin-left: auto;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+}
+
+.mes-card-body {
+    padding: 14px;
+}
+
+.mes-card-body-flush {
+    padding: 0;
+}
+
+.mes-card-footer {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 14px;
+    border-top: 1px solid var(--mes-border);
+}
+
+/* --- Filter bar ----------------------------------------------------------- */
+.mes-filter-bar {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-end;
+    gap: 10px;
+}
+
+    .mes-filter-bar .mes-filter-item {
+        min-width: 160px;
+    }
+
+/* --- Badges --------------------------------------------------------------- */
+.mes-badge {
+    display: inline-block;
+    padding: 2px 9px;
+    border-radius: 20px;
+    font-size: 11.5px;
+    font-weight: 500;
+    line-height: 1.5;
+    white-space: nowrap;
+}
+
+.mes-badge-ok { background: var(--mes-ok-bg); color: var(--mes-ok); }
+.mes-badge-info { background: var(--mes-info-bg); color: var(--mes-info); }
+.mes-badge-warn { background: var(--mes-warn-bg); color: var(--mes-warn); }
+.mes-badge-danger { background: var(--mes-danger-bg); color: var(--mes-danger); }
+.mes-badge-muted { background: var(--mes-muted-bg); color: var(--mes-muted); }
+
+/* --- Stat tiles (giống ô Target / Good / NG / Efficiency) ---------------- */
+.mes-stat-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+    gap: 16px;
+    margin-bottom: 16px;
+}
+
+.mes-stat-tile {
+    display: block;
+    padding: 16px 16px 18px;
+    border-radius: 2px;
+    color: #fff;
+    background: var(--mes-brand);
+}
+
+    .mes-stat-tile:hover {
+        color: #fff;
+        filter: brightness(1.04);
+    }
+
+.mes-stat-value {
+    display: block;
+    font-size: 17px;
+    font-weight: 600;
+    line-height: 1.4;
+}
+
+.mes-stat-label {
+    display: block;
+    margin-top: 6px;
+    font-size: 13.5px;
+    opacity: .95;
+}
+
+.mes-stat-purple { background: #9370db; }
+.mes-stat-teal { background: #00c4bb; }
+.mes-stat-red { background: #f00; }
+.mes-stat-orange { background: #e8962b; }
+
+/* --- Quick links ---------------------------------------------------------- */
+.mes-quick-link-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 8px;
+}
+
+.mes-quick-link {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 12px;
+    border: 1px solid var(--mes-border);
+    border-radius: var(--mes-radius);
+    color: var(--mes-text);
+    background: var(--mes-surface);
+}
+
+    .mes-quick-link:hover {
+        border-color: var(--mes-brand-100);
+        background: var(--mes-brand-50);
+        color: var(--mes-brand-600);
+    }
+
+    .mes-quick-link i {
+        width: 18px;
+        text-align: center;
+        color: var(--mes-brand);
+    }
+
+/* --- Tree (Menu management, Permission) ---------------------------------- */
+.mes-tree,
+.mes-tree ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+    .mes-tree ul {
+        margin-left: 22px;
+        padding-left: 10px;
+        border-left: 1px dashed var(--mes-border-2);
+        min-height: 6px;
+    }
+
+.mes-tree-row {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 6px 8px;
+    margin: 2px 0;
+    border: 1px solid transparent;
+    border-radius: var(--mes-radius-sm);
+    background: var(--mes-surface);
+}
+
+    .mes-tree-row:hover {
+        background: var(--mes-surface-2);
+        border-color: var(--mes-border);
+    }
+
+.mes-tree-handle {
+    cursor: grab;
+    color: var(--mes-text-3);
+    padding: 0 2px;
+}
+
+.mes-tree-icon {
+    width: 18px;
+    text-align: center;
+    color: var(--mes-text-3);
+}
+
+.mes-tree-name {
+    font-weight: 500;
+}
+
+.mes-tree-meta {
+    font-size: 11.5px;
+    color: var(--mes-text-3);
+    font-family: var(--mes-font-mono);
+}
+
+.mes-tree-actions {
+    margin-left: auto;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.mes-tree-inactive .mes-tree-name {
+    color: var(--mes-text-3);
+    text-decoration: line-through;
+}
+
+.sortable-ghost > .mes-tree-row {
+    background: var(--mes-brand-50);
+    border: 1px dashed var(--mes-brand);
+}
+
+/* Access level radio group */
+.mes-access-level {
+    display: inline-flex;
+    border: 1px solid var(--mes-border-2);
+    border-radius: var(--mes-radius-sm);
+    overflow: hidden;
+}
+
+    .mes-access-level input {
+        display: none;
+    }
+
+    .mes-access-level label {
+        margin: 0;
+        padding: 3px 10px;
+        font-size: 11.5px;
+        font-weight: 500;
+        color: var(--mes-text-2);
+        cursor: pointer;
+        border-right: 1px solid var(--mes-border-2);
+        user-select: none;
+    }
+
+        .mes-access-level label:last-of-type {
+            border-right: none;
+        }
+
+    .mes-access-level input:checked + label.mes-access-none { background: var(--mes-muted-bg); color: var(--mes-muted); }
+    .mes-access-level input:checked + label.mes-access-read { background: var(--mes-info-bg); color: var(--mes-info); }
+    .mes-access-level input:checked + label.mes-access-full { background: var(--mes-ok-bg); color: var(--mes-ok); }
+    .mes-access-level input:checked + label.mes-access-inherit { background: var(--mes-surface-3); color: var(--mes-text); }
+    .mes-access-level input:disabled + label { cursor: not-allowed; opacity: .75; }
+
+/* --- JSON diff in audit log ---------------------------------------------- */
+.mes-json {
+    max-width: 380px;
+    max-height: 120px;
+    overflow: auto;
+    margin: 0;
+    padding: 6px 8px;
+    border-radius: var(--mes-radius-sm);
+    background: var(--mes-surface-3);
+    font-family: var(--mes-font-mono);
+    font-size: 11.5px;
+    white-space: pre-wrap;
+    word-break: break-all;
+}
+
+/* --- Authentication pages ------------------------------------------------- */
+.mes-auth-page {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 24px 16px;
+    background: radial-gradient(circle at 20% 0%, var(--mes-brand-50), transparent 50%), var(--mes-bg);
+}
+
+/* Card đăng nhập dạng "matte glass": nền trắng mờ + làm mờ ảnh nền phía sau (backdrop-filter),
+   viền sáng + vệt sáng ở mép trên để có cảm giác tấm kính mờ.
+   Trình duyệt không hỗ trợ backdrop-filter -> @supports phía dưới trả về nền gần đục để chữ vẫn đọc được. */
+.mes-auth-card {
+    position: relative;
+    width: 100%;
+    max-width: 420px;
+    padding: 30px 28px 26px;
+    border: 1px solid rgba(255, 255, 255, .55);
+    border-radius: 18px;
+    background: linear-gradient(160deg, rgba(255, 255, 255, .78), rgba(255, 255, 255, .58));
+    backdrop-filter: blur(22px) saturate(150%);
+    -webkit-backdrop-filter: blur(22px) saturate(150%);
+    box-shadow: 0 18px 48px rgba(12, 20, 38, .22), inset 0 1px 0 rgba(255, 255, 255, .7);
+}
+
+    /* Vệt sáng chéo mô phỏng ánh sáng hắt trên mặt kính.
+       Bo góc bằng border-radius: inherit thay vì overflow: hidden trên card,
+       để dropdown chọn ngôn ngữ ở cuối card không bị cắt. */
+    .mes-auth-card::before {
+        content: '';
+        position: absolute;
+        inset: 0;
+        border-radius: inherit;
+        pointer-events: none;
+        background: linear-gradient(115deg, rgba(255, 255, 255, .35) 0%, rgba(255, 255, 255, 0) 45%);
+    }
+
+    .mes-auth-card > * {
+        position: relative;
+    }
+
+    /* Ô nhập cũng hơi trong để hòa với mặt kính. */
+    .mes-auth-card .form-control,
+    .mes-auth-card .form-select {
+        border-color: rgba(255, 255, 255, .8);
+        background-color: rgba(255, 255, 255, .72);
+    }
+
+        .mes-auth-card .form-control:focus,
+        .mes-auth-card .form-select:focus {
+            background-color: rgba(255, 255, 255, .95);
+        }
+
+@supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
+    .mes-auth-card {
+        background: rgba(255, 255, 255, .95);
+    }
+}
+
+.mes-auth-brand {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 18px;
+}
+
+.mes-auth-brand-logo {
+    height: 34px;
+    width: auto;
+}
+
+.mes-auth-brand-text {
+    font-size: 18px;
+    font-weight: 600;
+    letter-spacing: .2px;
+    color: var(--mes-text);
+}
+
+    .mes-auth-brand-text em {
+        font-style: normal;
+        color: var(--mes-brand);
+    }
+
+.mes-auth-title {
+    margin: 0 0 4px;
+    font-size: 19px;
+    font-weight: 600;
+}
+
+.mes-auth-subtitle {
+    margin: 0 0 18px;
+    font-size: 13px;
+    color: var(--mes-text-2);
+}
+
+.mes-auth-footer {
+    margin-top: 16px;
+    padding-top: 14px;
+    border-top: 1px solid var(--mes-border);
+    font-size: 12.5px;
+    color: var(--mes-text-2);
+    text-align: center;
+}
+
+.mes-auth-status-icon {
+    width: 56px;
+    height: 56px;
+    margin: 4px auto 14px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 22px;
+}
+
+.mes-auth-company {
+    margin-top: 14px;
+    font-size: 11.5px;
+    color: var(--mes-text-3);
+    text-align: center;
+}
+
+/* --- Language switcher (Views/Shared/_LanguageSwitcher.cshtml) ------------ */
+.mes-language-switcher {
+    position: relative;
+}
+
+    /* Bỏ tam giác mặc định của <summary>. */
+    .mes-language-switcher > summary {
+        list-style: none;
+    }
+
+        .mes-language-switcher > summary::-webkit-details-marker {
+            display: none;
+        }
+
+.mes-language-current {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    height: 30px;
+    padding: 0 9px;
+    border: 1px solid var(--mes-border-2);
+    border-radius: var(--mes-radius-sm);
+    background: var(--mes-surface);
+    color: var(--mes-text-2);
+    font-size: 12.5px;
+    cursor: pointer;
+    user-select: none;
+}
+
+    .mes-language-current:hover {
+        border-color: var(--mes-brand-100);
+        color: var(--mes-text);
+    }
+
+.mes-language-flag {
+    width: 20px;
+    height: 14px;
+    flex: 0 0 20px;
+    object-fit: cover;
+    border-radius: 2px;
+    box-shadow: 0 0 0 1px rgba(22, 35, 58, .12);
+}
+
+.mes-language-flag-fallback {
+    width: 20px;
+    text-align: center;
+    color: var(--mes-text-3);
+}
+
+.mes-language-caret {
+    font-size: 9px;
+    opacity: .7;
+    transition: transform .15s ease;
+}
+
+.mes-language-switcher[open] .mes-language-caret {
+    transform: rotate(180deg);
+}
+
+.mes-language-menu {
+    position: absolute;
+    top: calc(100% + 4px);
+    right: 0;
+    z-index: 1080;
+    min-width: 170px;
+    padding: 4px;
+    border: 1px solid var(--mes-border);
+    border-radius: var(--mes-radius);
+    background: var(--mes-surface);
+    box-shadow: var(--mes-shadow-pop);
+}
+
+.mes-language-option {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    width: 100%;
+    padding: 6px 8px;
+    border: none;
+    border-radius: var(--mes-radius-sm);
+    background: transparent;
+    color: var(--mes-text);
+    font-size: 13px;
+    text-align: left;
+    cursor: pointer;
+}
+
+    .mes-language-option:hover {
+        background: var(--mes-surface-2);
+    }
+
+    .mes-language-option.mes-active {
+        background: var(--mes-brand-50);
+        color: var(--mes-brand-600);
+        font-weight: 500;
+    }
+
+.mes-language-name {
+    flex: 1 1 auto;
+    white-space: nowrap;
+}
+
+.mes-language-check {
+    font-size: 11px;
+    color: var(--mes-brand);
+}
+
+/* Trang đăng nhập: bộ chọn nằm giữa, cuối card, cùng chất liệu kính mờ.
+   Nằm sát đáy card nên dropdown mở LÊN TRÊN và canh giữa. */
+.mes-auth-language {
+    display: flex;
+    justify-content: center;
+    margin-top: 12px;
+}
+
+.mes-auth-card .mes-language-current {
+    border-color: rgba(255, 255, 255, .7);
+    background: rgba(255, 255, 255, .55);
+    color: var(--mes-text-2);
+}
+
+    .mes-auth-card .mes-language-current:hover {
+        background: rgba(255, 255, 255, .85);
+        color: var(--mes-text);
+    }
+
+.mes-auth-card .mes-language-menu {
+    top: auto;
+    bottom: calc(100% + 6px);
+    right: auto;
+    left: 50%;
+    transform: translateX(-50%);
+    border-color: rgba(255, 255, 255, .7);
+    background: rgba(255, 255, 255, .92);
+    backdrop-filter: blur(18px) saturate(150%);
+    -webkit-backdrop-filter: blur(18px) saturate(150%);
+}
+
+/* --- Empty / error state -------------------------------------------------- */
+.mes-state {
+    max-width: 520px;
+    margin: 40px auto;
+    text-align: center;
+}
+
+.mes-state-icon {
+    width: 64px;
+    height: 64px;
+    margin: 0 auto 16px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 26px;
+    background: var(--mes-surface-3);
+    color: var(--mes-text-3);
+}
+
+/* --- Notification bell (Views/Shared/_NotificationBell.cshtml) ------------ */
+.mes-notification-button {
+    position: relative;
+    width: 34px;
+    height: 34px;
+    font-size: 15px;
+}
+
+.mes-notification-badge {
+    position: absolute;
+    top: 2px;
+    right: 1px;
+    min-width: 17px;
+    height: 17px;
+    padding: 0 4px;
+    border-radius: 9px;
+    background: var(--mes-danger);
+    color: #fff;
+    font-size: 10px;
+    font-weight: 600;
+    line-height: 17px;
+    text-align: center;
+    box-shadow: 0 0 0 2px var(--mes-surface);
+}
+
+.mes-notification-panel {
+    width: 360px;
+    max-width: calc(100vw - 24px);
+    padding: 0;
+    overflow: hidden;
+}
+
+.mes-notification-header {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 14px;
+    border-bottom: 1px solid var(--mes-border);
+    font-size: 13px;
+}
+
+.mes-notification-list {
+    max-height: 420px;
+    overflow-y: auto;
+}
+
+.mes-notification-list-page {
+    max-height: none;
+}
+
+.mes-notification-item {
+    width: 100%;
+    display: flex;
+    gap: 10px;
+    padding: 10px 14px;
+    border: none;
+    border-bottom: 1px solid #f2f5f9;
+    background: var(--mes-surface);
+    text-align: left;
+    cursor: pointer;
+}
+
+    .mes-notification-item:hover {
+        background: var(--mes-surface-2);
+    }
+
+    .mes-notification-item.mes-unread {
+        background: var(--mes-brand-50);
+    }
+
+        .mes-notification-item.mes-unread .mes-notification-title::after {
+            content: '';
+            display: inline-block;
+            width: 7px;
+            height: 7px;
+            margin-left: 6px;
+            border-radius: 50%;
+            background: var(--mes-brand);
+            vertical-align: middle;
+        }
+
+.mes-notification-icon {
+    flex: 0 0 32px;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 13px;
+}
+
+.mes-tone-ok { background: var(--mes-ok-bg); color: var(--mes-ok); }
+.mes-tone-info { background: var(--mes-info-bg); color: var(--mes-info); }
+.mes-tone-warn { background: var(--mes-warn-bg); color: var(--mes-warn); }
+.mes-tone-danger { background: var(--mes-danger-bg); color: var(--mes-danger); }
+.mes-tone-muted { background: var(--mes-muted-bg); color: var(--mes-muted); }
+
+.mes-notification-content {
+    flex: 1 1 auto;
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 1px;
+}
+
+.mes-notification-title {
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--mes-text);
+}
+
+.mes-notification-message {
+    font-size: 12.5px;
+    color: var(--mes-text-2);
+    line-height: 1.4;
+}
+
+.mes-notification-time {
+    font-size: 11px;
+    color: var(--mes-text-3);
+}
+
+.mes-notification-empty {
+    padding: 24px 14px;
+    text-align: center;
+    font-size: 12.5px;
+    color: var(--mes-text-3);
+}
+
+.mes-notification-footer {
+    display: block;
+    padding: 9px 14px;
+    border-top: 1px solid var(--mes-border);
+    text-align: center;
+    font-size: 12.5px;
+}
+
+.mes-toast-clickable {
+    cursor: pointer;
+}
+
+/* --- Authentication video background (Views/Shared/_AuthLayout.cshtml) -- */
+.mes-auth-background {
+    position: fixed;
+    inset: 0;
+    z-index: 0;
+    overflow: hidden;
+    background: #0f1a2e;
+}
+
+.mes-auth-video {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0;
+    transition: opacity var(--mes-auth-fade-duration, 1.5s) ease-in-out;
+}
+
+    .mes-auth-video.mes-visible {
+        opacity: 1;
+    }
+
+.mes-auth-overlay {
+    position: absolute;
+    inset: 0;
+    background:
+        radial-gradient(ellipse at center, rgba(8, 15, 30, .15) 0%, rgba(8, 15, 30, .55) 100%),
+        linear-gradient(180deg, rgba(8, 15, 30, .25), rgba(8, 15, 30, .45));
+}
+
+/* Không phát được video: nền gradient theo màu thương hiệu. */
+.mes-auth-background-static {
+    background: radial-gradient(circle at 20% 10%, color-mix(in srgb, var(--mes-brand) 55%, #0f1a2e), #0f1a2e 70%);
+}
+
+.mes-auth-page-video {
+    position: relative;
+    z-index: 1;
+    background: transparent;
+}
+
+    /* Trên nền video: đổ bóng sâu hơn cho tấm kính nổi khỏi nền. */
+    .mes-auth-page-video .mes-auth-card {
+        box-shadow: 0 24px 64px rgba(0, 0, 0, .4), inset 0 1px 0 rgba(255, 255, 255, .7);
+        animation: mes-auth-card-enter .5s ease-out both;
+    }
+
+    .mes-auth-page-video .mes-auth-company {
+        color: rgba(255, 255, 255, .8);
+    }
+
+@keyframes mes-auth-card-enter {
+    from {
+        opacity: 0;
+        transform: translateY(12px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .mes-auth-video {
+        display: none;
+    }
+
+    .mes-auth-page-video .mes-auth-card {
+        animation: none;
+    }
+}
+
+/* --- Dialog (Views/Shared/_Layout.cshtml #mesDialog + _DialogLayout.cshtml) - */
+.mes-dialog .modal-content {
+    border: none;
+    border-radius: var(--mes-radius-lg);
+    box-shadow: 0 24px 64px rgba(22, 35, 58, .25);
+}
+
+.mes-dialog .modal-header {
+    padding: 12px 18px;
+    border-bottom: 1px solid var(--mes-border);
+}
+
+.mes-dialog .modal-title {
+    font-size: 15px;
+    font-weight: 600;
+}
+
+.mes-dialog .modal-body {
+    padding: 16px 18px;
+    background: var(--mes-bg);
+}
+
+.mes-dialog-loading {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 160px;
+}
+
+/* Card nằm trong dialog: bỏ khoảng trắng thừa, footer luôn thấy khi nội dung dài. */
+.mes-dialog-content > .row:last-child,
+.mes-dialog-content .mes-card:last-child {
+    margin-bottom: 0;
+}
+
+.mes-dialog-content .mes-card-footer {
+    position: sticky;
+    bottom: -16px;
+    z-index: 2;
+    background: var(--mes-surface);
+    border-radius: 0 0 var(--mes-radius-lg) var(--mes-radius-lg);
+}
+
+/* Nội dung chỉ dành cho trang đầy đủ (nút "Về danh sách"...) */
+.mes-dialog-content [data-mes-page-only] {
+    display: none !important;
+}
+
+/* Chỉ hiện khi nằm trong dialog (nút "Đóng" của nội dung dùng chung cho trang và dialog). */
+[data-mes-dialog-only]:not(.mes-dialog-content [data-mes-dialog-only]) {
+    display: none !important;
+}
+
+/* --- TreeView (System > Menus: Areas/System/Views/Menu) ------------------ */
+.mes-treeview,
+.mes-treeview-children {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.mes-treeview-children {
+    position: relative;
+    margin-left: 13px;      /* 13 + 22 = --mes-tree-indent, đổi thì đổi cả biến đó */
+    padding-left: 22px;
+    min-height: 4px;
+}
+
+    /* Đường dọc nối các node con */
+    .mes-treeview-children::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        bottom: 18px;
+        left: 0;
+        border-left: 1px solid var(--mes-border-2);
+    }
+
+.mes-treeview-item {
+    position: relative;
+}
+
+    /* Đường ngang từ đường dọc tới node */
+    .mes-treeview-children > .mes-treeview-item::before {
+        content: '';
+        position: absolute;
+        top: 19px;
+        left: -22px;
+        width: 18px;
+        border-top: 1px solid var(--mes-border-2);
+    }
+
+.mes-treeview .mes-tree-row {
+    min-height: 38px;
+    user-select: none;
+    -webkit-user-select: none;
+}
+
+/* Cột thẳng hàng: khối "icon + tên" rộng cố định, trừ đi phần thụt lề của cấp hiện tại,
+   nên chip loại (Module / Group / Page) và MenuCode phía sau luôn bắt đầu cùng một vị trí.
+   --mes-tree-depth do Razor ghi lên từng <li> (gốc = 0).
+   --mes-tree-indent PHẢI bằng margin-left + padding-left của .mes-treeview-children (13 + 22). */
+.mes-treeview {
+    --mes-tree-label-width: 260px;
+    --mes-tree-indent: 35px;
+}
+
+.mes-tree-label {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    flex: 0 0 calc(var(--mes-tree-label-width) - var(--mes-tree-depth, 0) * var(--mes-tree-indent));
+    min-width: 0;
+}
+
+    /* Tên quá dài: cắt bằng "..." thay vì đẩy lệch cột; tên đầy đủ nằm ở title (hover). */
+    .mes-tree-label .mes-tree-name {
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+    }
+
+.mes-tree-type {
+    min-width: 66px;
+    text-align: center;
+}
+
+/* MenuCode rộng tối thiểu để cột URL phía sau (trang Menus) cũng thẳng hàng. */
+.mes-tree-code {
+    min-width: 200px;
+}
+
+/* Màn hình hẹp: bỏ cột cố định, để tên co giãn tự nhiên. */
+@media (max-width: 767.98px) {
+    .mes-tree-label {
+        flex: 1 1 auto;
+    }
+}
+
+.mes-tree-toggle,
+.mes-tree-toggle-placeholder {
+    flex: 0 0 22px;
+    width: 22px;
+    height: 22px;
+}
+
+.mes-tree-toggle {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+    border: none;
+    border-radius: var(--mes-radius-sm);
+    background: transparent;
+    color: var(--mes-text-3);
+    font-size: 11px;
+    cursor: pointer;
+}
+
+    .mes-tree-toggle:hover {
+        background: var(--mes-surface-3);
+        color: var(--mes-text);
+    }
+
+    .mes-tree-toggle i {
+        transition: transform .15s ease;
+    }
+
+.mes-tree-collapsed > .mes-tree-row .mes-tree-toggle i {
+    transform: rotate(-90deg);
+}
+
+.mes-tree-collapsed > .mes-treeview-children {
+    display: none;
+}
+
+/* Chú thích 3 mức quyền phía trên cây (System > Role Permissions). */
+.mes-tree-legend {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 4px;
+    margin-bottom: 10px;
+    padding-bottom: 10px;
+    border-bottom: 1px dashed var(--mes-border-2);
+    font-size: 12px;
+    color: var(--mes-text-2);
+}
+
+/* Cây phân quyền: nút chọn mức quyền cao hơn nút thường nên nới chiều cao dòng. */
+.mes-treeview .mes-tree-actions .btn-group .btn {
+    padding: 2px 8px;
+    font-size: 11.5px;
+}
+
+.mes-tree-move-group .btn {
+    padding: 3px 8px;
+}
+
+    .mes-tree-move-group .btn:disabled {
+        opacity: .35;
+    }
+
+.mes-tree-action-placeholder {
+    display: inline-block;
+    width: 30px;
+}
+
+.mes-tree-moved {
+    animation: mes-tree-moved-highlight 1.2s ease-out;
+}
+
+@keyframes mes-tree-moved-highlight {
+    from {
+        background: var(--mes-warn-bg);
+        border-color: #f1dcb6;
+    }
+
+    to {
+        background: var(--mes-surface);
+        border-color: transparent;
+    }
+}
+
+.sortable-ghost > .mes-tree-row {
+    background: var(--mes-brand-50);
+    border: 1px dashed var(--mes-brand);
+}

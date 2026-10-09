@@ -1,0 +1,311 @@
+/* ==========================================================================
+   MES - Design tokens + base + Bootstrap overrides
+   Mọi màu / kích thước trong mes-layout.css, mes-components.css đều quy về biến ở đây.
+
+   --mes-brand được Layout ghi đè bằng SystemSetting "Branding.PrimaryColor"
+   (xem Views/Shared/_Layout.cshtml). Các sắc độ hover / 50 / 100 tự tính bằng color-mix(),
+   nên đổi màu công ty chỉ cần sửa 1 giá trị trên trang System Settings.
+   ========================================================================== */
+
+:root {
+    /* Brand */
+    --mes-brand: #3b5bdb;
+    --mes-brand-hover: color-mix(in srgb, var(--mes-brand) 88%, #000);
+    --mes-brand-600: color-mix(in srgb, var(--mes-brand) 78%, #000);
+    --mes-brand-100: color-mix(in srgb, var(--mes-brand) 16%, #fff);
+    --mes-brand-50: color-mix(in srgb, var(--mes-brand) 7%, #fff);
+    --mes-text-on-brand: #fff;
+    /* Surfaces */
+    --mes-bg: #f6f8fb;
+    --mes-surface: #fff;
+    --mes-surface-2: #f7fafd;
+    --mes-surface-3: #eef3f9;
+    /* Borders */
+    --mes-border: #e6ebf2;
+    --mes-border-2: #dde4ee;
+    /* Text */
+    --mes-text: #16233a;
+    --mes-text-2: #5a6779;
+    --mes-text-3: #9aa7ba;
+    /* Status */
+    --mes-ok: #0f6e56;
+    --mes-ok-bg: #e1f5ee;
+    --mes-warn: #854f0b;
+    --mes-warn-bg: #faeeda;
+    --mes-danger: #c4443f;
+    --mes-danger-bg: #fcebeb;
+    --mes-info: var(--mes-brand-600);
+    --mes-info-bg: var(--mes-brand-50);
+    --mes-muted: #5f5e5a;
+    --mes-muted-bg: #f1efe8;
+    /* Shape */
+    --mes-radius: 8px;
+    --mes-radius-sm: 6px;
+    --mes-radius-lg: 10px;
+    /* Metrics */
+    --mes-sidebar-width: 220px;
+    --mes-sidebar-width-collapsed: 58px;
+    --mes-topbar-height: 52px;
+    /* Type */
+    --mes-font: 'Inter', 'Segoe UI', -apple-system, BlinkMacSystemFont, system-ui, Arial, sans-serif;
+    --mes-font-mono: Consolas, 'Courier New', monospace;
+    /* Elevation */
+    --mes-shadow-sm: 0 1px 2px rgba(22, 35, 58, .06);
+    --mes-shadow-pop: 0 8px 24px rgba(22, 35, 58, .12);
+}
+
+/* --- Base ----------------------------------------------------------------- */
+html {
+    font-size: 14px;
+}
+
+body {
+    font-family: var(--mes-font);
+    font-size: 13.5px;
+    line-height: 1.55;
+    color: var(--mes-text);
+    background: var(--mes-bg);
+    -webkit-font-smoothing: antialiased;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    color: var(--mes-text);
+    font-weight: 500;
+}
+
+h1 { font-size: 20px; }
+h2 { font-size: 18px; }
+h3 { font-size: 16px; }
+h4 { font-size: 15px; }
+h5 { font-size: 14px; }
+h6 { font-size: 13px; }
+
+a {
+    color: var(--mes-brand);
+    text-decoration: none;
+}
+
+    a:hover {
+        color: var(--mes-brand-600);
+    }
+
+code {
+    font-family: var(--mes-font-mono);
+    color: var(--mes-brand-600);
+}
+
+/* --- Forms ---------------------------------------------------------------- */
+.form-label,
+label {
+    font-size: 12.5px;
+    font-weight: 500;
+    color: var(--mes-text-2);
+    margin-bottom: 4px;
+}
+
+.form-control,
+.form-select {
+    font-size: 13px;
+    color: var(--mes-text);
+    border: 1px solid var(--mes-border-2);
+    border-radius: var(--mes-radius-sm);
+    min-height: 34px;
+    padding: 5px 10px;
+}
+
+.form-select {
+    padding-right: 32px;
+}
+
+    .form-control:focus,
+    .form-select:focus,
+    .form-check-input:focus {
+        border-color: var(--mes-brand);
+        box-shadow: 0 0 0 3px var(--mes-brand-50);
+    }
+
+    .form-control[readonly],
+    .form-control:disabled {
+        background: var(--mes-surface-3);
+        color: var(--mes-text-2);
+    }
+
+.form-check-input:checked {
+    background-color: var(--mes-brand);
+    border-color: var(--mes-brand);
+}
+
+.form-text {
+    font-size: 12px;
+    color: var(--mes-text-3);
+}
+
+.field-validation-error,
+.validation-summary-errors {
+    color: var(--mes-danger);
+    font-size: 12px;
+}
+
+    .validation-summary-errors ul {
+        margin: 0;
+        padding-left: 18px;
+    }
+
+.input-validation-error {
+    border-color: var(--mes-danger) !important;
+}
+
+/* --- Buttons -------------------------------------------------------------- */
+.btn {
+    font-size: 12.5px;
+    font-weight: 500;
+    padding: 6px 13px;
+    border-radius: var(--mes-radius-sm);
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.btn-sm {
+    padding: 3px 9px;
+    font-size: 12px;
+}
+
+.btn-primary {
+    --bs-btn-bg: var(--mes-brand);
+    --bs-btn-border-color: var(--mes-brand);
+    --bs-btn-hover-bg: var(--mes-brand-hover);
+    --bs-btn-hover-border-color: var(--mes-brand-hover);
+    --bs-btn-active-bg: var(--mes-brand-600);
+    --bs-btn-active-border-color: var(--mes-brand-600);
+    --bs-btn-disabled-bg: var(--mes-brand);
+    --bs-btn-disabled-border-color: var(--mes-brand);
+}
+
+.btn-outline-primary {
+    --bs-btn-color: var(--mes-brand);
+    --bs-btn-border-color: var(--mes-brand);
+    --bs-btn-hover-bg: var(--mes-brand);
+    --bs-btn-hover-border-color: var(--mes-brand);
+    --bs-btn-active-bg: var(--mes-brand-600);
+}
+
+.btn-light,
+.btn-secondary {
+    --bs-btn-bg: var(--mes-surface);
+    --bs-btn-border-color: var(--mes-border-2);
+    --bs-btn-color: var(--mes-text-2);
+    --bs-btn-hover-bg: var(--mes-surface-2);
+    --bs-btn-hover-border-color: var(--mes-text-3);
+    --bs-btn-hover-color: var(--mes-text);
+}
+
+.btn-danger {
+    --bs-btn-bg: var(--mes-danger);
+    --bs-btn-border-color: var(--mes-danger);
+}
+
+.btn-success {
+    --bs-btn-bg: var(--mes-ok);
+    --bs-btn-border-color: var(--mes-ok);
+}
+
+.btn:focus-visible {
+    box-shadow: 0 0 0 3px var(--mes-brand-100);
+}
+
+/* --- Tables --------------------------------------------------------------- */
+.table {
+    font-size: 12.75px;
+    color: var(--mes-text);
+    margin-bottom: 0;
+}
+
+    .table > thead > tr > th {
+        background: var(--mes-surface-2);
+        border-bottom: 1px solid var(--mes-border);
+        color: var(--mes-text-2);
+        font-weight: 500;
+        padding: 9px 10px;
+        white-space: nowrap;
+    }
+
+    .table > tbody > tr > td {
+        border-color: #f2f5f9;
+        padding: 8px 10px;
+        vertical-align: middle;
+    }
+
+.table-hover > tbody > tr:hover > * {
+    --bs-table-bg-state: var(--mes-surface-2);
+}
+
+/* DataTables 2 */
+div.dt-container .dt-paging .dt-paging-button.current,
+div.dt-container .dt-paging .dt-paging-button.current:hover {
+    background: var(--mes-brand) !important;
+    border-color: var(--mes-brand) !important;
+    color: #fff !important;
+}
+
+.page-link {
+    color: var(--mes-brand);
+}
+
+.active > .page-link,
+.page-link.active {
+    background: var(--mes-brand);
+    border-color: var(--mes-brand);
+}
+
+/* --- Alerts --------------------------------------------------------------- */
+.alert {
+    border-radius: var(--mes-radius);
+    font-size: 13px;
+    border: 1px solid transparent;
+}
+
+.alert-info {
+    background: var(--mes-info-bg);
+    border-color: var(--mes-brand-100);
+    color: var(--mes-info);
+}
+
+.alert-warning {
+    background: var(--mes-warn-bg);
+    border-color: #f1dcb6;
+    color: var(--mes-warn);
+}
+
+.alert-danger {
+    background: var(--mes-danger-bg);
+    border-color: #f3cccc;
+    color: var(--mes-danger);
+}
+
+.alert-success {
+    background: var(--mes-ok-bg);
+    border-color: #bfe8d9;
+    color: var(--mes-ok);
+}
+
+/* --- SweetAlert2 ---------------------------------------------------------- */
+.swal2-popup {
+    font-family: var(--mes-font);
+    border-radius: var(--mes-radius-lg);
+}
+
+.swal2-title {
+    font-size: 17px;
+    font-weight: 500;
+    color: var(--mes-text);
+}
+
+.swal2-html-container {
+    font-size: 13.5px;
+    color: var(--mes-text-2);
+}
+
+.swal2-toast .swal2-title {
+    font-size: 13px;
+}
